@@ -9,10 +9,14 @@ import crud, schemas
 import config
 
 
-def Client(session: StringSession):
-    return TelegramClient(
-        session, api_id=config.api_id, api_hash=config.api_hash
-    )
+class API:
+    def __init__(self, id: int, hash: str):
+        self.id = id
+        self.hash = hash
+
+
+def Client(session: StringSession, api: API):
+    return TelegramClient(session, api_id=api.id, api_hash=api.hash)
 
 
 def airplane_from_client(client: TelegramClient) -> schemas.AirplaneCreate:
@@ -29,22 +33,22 @@ def airplane_from_client(client: TelegramClient) -> schemas.AirplaneCreate:
     return airplane
 
 
-def park(db: Session) -> schemas.AirplaneCreate:
-    with Client(StringSession()) as client:
+def park(db: Session, api: API) -> schemas.AirplaneCreate:
+    with Client(StringSession(), api) as client:
         client.start()
         return crud.build_airplane(db, airplane_from_client(client))
 
 
-def repark(db: Session) -> None:
+def repark(db: Session, api: API) -> None:
     for airplane in crud.airplanes(db):
-        with Client(StringSession(airplane.session)) as client:
+        with Client(StringSession(airplane.session, api)) as client:
             new_airplane = airplane_from_client(client)
             crud.update_airplane_by_id(db, airplane.id, new_airplane)
 
 
-def soar(db: Session, id: int) -> List[Tuple[str, datetime]]:
+def soar(db: Session, id: int, api: API) -> List[Tuple[str, datetime]]:
     airplane = crud.airplane_by_id(db, id)
-    with Client(StringSession(airplane.session)) as client:
+    with Client(StringSession(airplane.session, api)) as client:
         messages = client.get_messages(
             config.service_id, from_user=config.service_id, limit=10
         )

@@ -30,20 +30,33 @@ def board():
 
 
 @app.command()
-def park():
-    airplane = telegram.park(db)
+def park(
+    api_id: int = typer.Argument(..., envvar="API_ID"),
+    api_hash: str = typer.Argument(..., envvar="API_HASH"),
+):
+    api = telegram.API(api_id, api_hash)
+    airplane = telegram.park(db, api)
     console.print(f"{airplane.id} was parked!")
 
 
 @app.command()
-def repark():
-    telegram.repark(db)
+def repark(
+    api_id: int = typer.Argument(..., envvar="API_ID"),
+    api_hash: str = typer.Argument(..., envvar="API_HASH"),
+):
+    api = telegram.API(api_id, api_hash)
+    telegram.repark(db, api)
     board()
 
 
 @app.command()
-def soar(id: int):
-    messages = telegram.soar(db, id)
+def soar(
+    id: int,
+    api_id: int = typer.Argument(None, envvar="API_ID"),
+    api_hash: str = typer.Argument(None, envvar="API_HASH"),
+):
+    api = telegram.API(api_id, api_hash)
+    messages = telegram.soar(db, id, api)
     table = Table(title="Last messages from Telegram", show_lines=True)
     table.add_column("text")
     table.add_column("date and time")
