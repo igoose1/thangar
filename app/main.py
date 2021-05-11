@@ -8,14 +8,18 @@ from rich.table import Table
 
 models.Base.metadata.create_all(bind=engine)
 db = SessionLocal()
-app = typer.Typer()
 console = Console()
+app = typer.Typer(help="Hangar of Telegram accounts.")
 
 
 @app.command()
 def board():
+    """
+    Show a board with every parked account.
+    """
+
     airplanes = crud.airplanes(db)
-    table = Table(title="Airplanes")
+    table = Table(title="Accounts")
     table.add_column("Id")
     table.add_column("Name")
     table.add_column("Phone")
@@ -34,6 +38,10 @@ def park(
     api_id: int = typer.Argument(..., envvar="API_ID"),
     api_hash: str = typer.Argument(..., envvar="API_HASH"),
 ):
+    """
+    Park an account.
+    """
+
     api = telegram.API(api_id, api_hash)
     airplane = telegram.park(db, api)
     console.print(f"{airplane.id} was parked!")
@@ -44,6 +52,10 @@ def repark(
     api_id: int = typer.Argument(..., envvar="API_ID"),
     api_hash: str = typer.Argument(..., envvar="API_HASH"),
 ):
+    """
+    Update information about parked accounts.
+    """
+
     api = telegram.API(api_id, api_hash)
     telegram.repark(db, api)
     board()
@@ -55,6 +67,10 @@ def soar(
     api_id: int = typer.Argument(None, envvar="API_ID"),
     api_hash: str = typer.Argument(None, envvar="API_HASH"),
 ):
+    """
+    Show last service messages of an account.
+    """
+
     api = telegram.API(api_id, api_hash)
     messages = telegram.soar(db, id, api)
     table = Table(title="Last messages from Telegram", show_lines=True)
