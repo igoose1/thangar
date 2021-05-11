@@ -36,6 +36,12 @@ def park():
 
 
 @app.command()
+def repark():
+    telegram.repark(db)
+    board()
+
+
+@app.command()
 def soar(id: int):
     messages = telegram.soar(db, id)
     table = Table(title="Last messages from Telegram", show_lines=True)

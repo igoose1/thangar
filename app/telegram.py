@@ -35,6 +35,13 @@ def park(db: Session) -> schemas.AirplaneCreate:
         return crud.build_airplane(db, airplane_from_client(client))
 
 
+def repark(db: Session) -> None:
+    for airplane in crud.airplanes(db):
+        with Client(StringSession(airplane.session)) as client:
+            new_airplane = airplane_from_client(client)
+            crud.update_airplane_by_id(db, airplane.id, new_airplane)
+
+
 def soar(db: Session, id: int) -> List[Tuple[str, datetime]]:
     airplane = crud.airplane_by_id(db, id)
     with Client(StringSession(airplane.session)) as client:
