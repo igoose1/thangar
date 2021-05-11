@@ -13,14 +13,16 @@ def airplane_by_id(db: Session, id: int) -> schemas.Airplane:
     return db.query(models.Airplane).filter(models.Airplane.id == id).first()
 
 
+def update_airplane_by_id(db: Session, id: int, airplane: schemas.Airplane):
+    db.query(models.Airplane).filter(models.Airplane.id == id).update(
+        airplane.dict()
+    )
+
+
 def build_airplane(
     db: Session, airplane: schemas.AirplaneCreate
-) -> models.Airplane:
-    db_airplane = models.Airplane(
-        session=airplane.session,
-        id=airplane.id,
-        user_name=airplane.user_name,
-    )
+) -> schemas.Airplane:
+    db_airplane = models.Airplane(**airplane.dict())
     db.add(db_airplane)
     db.commit()
     db.refresh(db_airplane)

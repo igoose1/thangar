@@ -3,8 +3,10 @@ from pydantic import BaseModel
 
 class AirplaneBase(BaseModel):
     session: str
-    user_name: str
     id: int
+    name: str
+    phone: str
+    username: str
 
 
 class AirplaneCreate(AirplaneBase):

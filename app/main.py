@@ -18,9 +18,13 @@ def board():
     table = Table(title="Airplanes")
     table.add_column("Id")
     table.add_column("Name")
+    table.add_column("Phone")
+    table.add_column("Username")
 
     for airplane in airplanes:
-        table.add_row(str(airplane.id), airplane.user_name)
+        table.add_row(
+            str(airplane.id), airplane.name, airplane.phone, airplane.username
+        )
 
     console.print(table)
 
