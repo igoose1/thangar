@@ -1,8 +1,8 @@
 from typing import List
 
+import models
+import schemas
 from sqlalchemy.orm import Session
-
-import models, schemas
 
 
 def airplanes(db: Session) -> List[schemas.Airplane]:

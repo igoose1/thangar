@@ -1,10 +1,10 @@
-import crud, models
+import crud
+import models
 import telegram
+import typer
 from database import SessionLocal, engine
-
 from rich.console import Console
 from rich.table import Table
-import typer
 
 models.Base.metadata.create_all(bind=engine)
 db = SessionLocal()

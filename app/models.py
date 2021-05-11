@@ -1,10 +1,5 @@
-from sqlalchemy import (
-    Column,
-    String,
-    Integer,
-)
-
 from database import Base
+from sqlalchemy import Column, Integer, String
 
 
 class Airplane(Base):

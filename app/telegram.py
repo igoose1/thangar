@@ -1,12 +1,12 @@
-from typing import List, Tuple
 from datetime import datetime
+from typing import List, Tuple
 
-from telethon.sync import TelegramClient
-from telethon.sessions import StringSession
-from sqlalchemy.orm import Session
-
-import crud, schemas
 import config
+import crud
+import schemas
+from sqlalchemy.orm import Session
+from telethon.sessions import StringSession
+from telethon.sync import TelegramClient
 
 
 class API:
