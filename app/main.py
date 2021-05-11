@@ -17,7 +17,7 @@ def board():
     airplanes = crud.airplanes(db)
     table = Table(title="Airplanes")
     table.add_column("Id")
-    table.add_column("User name")
+    table.add_column("Name")
 
     for airplane in airplanes:
         table.add_row(str(airplane.id), airplane.user_name)
@@ -34,12 +34,12 @@ def park():
 @app.command()
 def soar(id: int):
     messages = telegram.soar(db, id)
-    table = Table(title="Messages from Telegram")
+    table = Table(title="Last messages from Telegram", show_lines=True)
     table.add_column("text")
     table.add_column("date and time")
 
-    for text, date in messages:
-        table.add_row(text, date.isoformat())
+    for text, date in messages[-1::-1]:
+        table.add_row(text, date.strftime("%d %b, %I:%M %p %Z"))
 
     console.print(table)
 

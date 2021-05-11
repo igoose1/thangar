@@ -32,6 +32,8 @@ def soar(db: Session, id: int) -> List[Tuple[str, datetime]]:
     with TelegramClient(
         StringSession(airplane.session), config.api_id, config.api_hash
     ) as client:
-        messages = client.get_messages(config.service_id, limit=5)
-        result = [(m.text, m.date) for m in messages]
+        messages = client.get_messages(
+            config.service_id, from_user=config.service_id, limit=10
+        )
+        result = [(m.text, m.date) for m in messages[:2]]
         return result
