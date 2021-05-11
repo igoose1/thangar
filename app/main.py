@@ -13,9 +13,9 @@ app = typer.Typer(help="Hangar of Telegram accounts.")
 
 
 @app.command()
-def board():
+def track():
     """
-    Show a board with every parked account.
+    Show a table with every parked account.
     """
 
     airplanes = crud.airplanes(db)
@@ -58,7 +58,7 @@ def repark(
 
     api = telegram.API(api_id, api_hash)
     telegram.repark(db, api)
-    board()
+    track()
 
 
 @app.command()
