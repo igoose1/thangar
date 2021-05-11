@@ -1,8 +1,12 @@
+from pathlib import Path
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./db.sqlite3"
+path = Path.home() / ".local" / "share" / "hangar"
+path.mkdir(parents=True, exist_ok=True)
+SQLALCHEMY_DATABASE_URL = "sqlite:///" + str(path / "db.sqlite3")
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
