@@ -1,7 +1,7 @@
 from typing import List
 
-import models
-import schemas
+from . import models
+from . import schemas
 from sqlalchemy.orm import Session
 
 

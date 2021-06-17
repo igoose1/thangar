@@ -1,3 +1,5 @@
+import typing
+
 from pydantic import BaseModel
 
 
@@ -6,7 +8,7 @@ class AirplaneBase(BaseModel):
     id: int
     name: str
     phone: str
-    username: str
+    username: typing.Optional[str]
 
 
 class AirplaneCreate(AirplaneBase):

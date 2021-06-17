@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import List, Tuple
 
-import config
-import crud
-import schemas
+from . import config
+from . import crud
+from . import schemas
 from sqlalchemy.orm import Session
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
