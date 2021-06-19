@@ -1,9 +1,19 @@
+# envs
 .env/
 .venv/
 env/
 venv/
+activate
 
+# testing database
 db.sqlite3
 
+# python cache
 __pycache__/
 *.pyc
+
+# building
+/build/
+/dist/
+/thangar.egg-info/
+/image/
