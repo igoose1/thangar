@@ -13,14 +13,13 @@
 # limitations under the License.
 
 from datetime import datetime
-from typing import List, Tuple
 
-from . import config
-from . import crud
-from . import schemas
+import telegram
 from sqlalchemy.orm import Session
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
+
+from . import config, crud, schemas
 
 
 class API:
@@ -60,7 +59,9 @@ def repark(db: Session, api: API) -> None:
             crud.update_airplane_by_id(db, airplane.id, new_airplane)
 
 
-def soar(db: Session, id: int, api: API) -> List[Tuple[str, datetime]]:
+def soar(
+    db: Session, id: int, api: API
+) -> typing.List[typing.Tuple[str, datetime]]:
     airplane = crud.airplane_by_id(db, id)
     with Client(StringSession(airplane.session), api) as client:
         messages = client.get_messages(

@@ -16,9 +16,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from . import crud
-from . import models
-from . import telegram
+from . import crud, models, telegram
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)

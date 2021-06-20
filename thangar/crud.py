@@ -14,9 +14,9 @@
 
 from typing import List
 
-from . import models
-from . import schemas
 from sqlalchemy.orm import Session
+
+from . import models, schemas
 
 
 def airplanes(db: Session) -> List[schemas.Airplane]:
