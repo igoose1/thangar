@@ -20,9 +20,11 @@ from sqlalchemy.orm import sessionmaker
 
 path = Path.home() / ".local" / "share" / "thangar"
 path.mkdir(parents=True, exist_ok=True)
-SQLALCHEMY_DATABASE_URL = "sqlite:///" + str(path / "db.sqlite3")
+database_path = path / "db.sqlite3"
+engine = create_engine("sqlite:///" + str(database_path))
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+database_path.touch()
+database_path.chmod(0o600)  # -rw-------
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
