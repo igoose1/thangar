@@ -50,6 +50,10 @@ Example
 	│ 1578935718 │ Bobby          │ +1212123421 │ FlamingoSays │
 	└────────────┴────────────────┴─────────────┴──────────────┘
 
+    % thangar export > my_dump.hjson
+
+    % thangar import < my_dump.hjson
+
 Use "``thangar --help``" for more information.
 
 Tip

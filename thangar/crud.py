@@ -20,7 +20,9 @@ from . import models, schemas
 
 
 def airplanes(db: Session) -> List[schemas.Airplane]:
-    return db.query(models.Airplane).all()
+    return [
+        schemas.Airplane.from_orm(x) for x in db.query(models.Airplane).all()
+    ]
 
 
 def airplane_by_id(db: Session, id: int) -> schemas.Airplane:

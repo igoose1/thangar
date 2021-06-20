@@ -12,17 +12,49 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
+
+import hjson
 import typer
 from rich.console import Console
 from rich.table import Table
 
-from . import crud, models, telegram
+from . import crud, models, telegram, schemas
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 db = SessionLocal()
 console = Console()
 app = typer.Typer(help="Hangar of Telegram accounts.")
+
+
+@app.command()
+def export():
+    """
+    Export data with secret tokens.
+    """
+
+    airplanes = [x.dict() for x in crud.airplanes(db)]
+    hjson.dump(airplanes, sys.stdout)
+
+
+@app.command("import")
+def import_():
+    """
+    Import exported data.
+    """
+
+    raw_airplanes = hjson.load(sys.stdin)
+    try:
+        airplanes = [schemas.AirplaneCreate(**x) for x in raw_airplanes]
+    except:
+        console.print("Incorrect input.")
+        return
+
+    for airplane in crud.airplanes(db):
+        crud.destroy_airplane(db, airplane)
+    for airplane in airplanes:
+        _ = crud.build_airplane(db, airplane)
 
 
 @app.command()
