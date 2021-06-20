@@ -5,7 +5,7 @@ thangar
 =======
 
 .. image:: https://badge.fury.io/py/thangar.svg
-    :target: https://badge.fury.io/py/thangar
+    :target: https://pypi.org/project/thangar
 
 Hangar of Telegram accounts.
 
