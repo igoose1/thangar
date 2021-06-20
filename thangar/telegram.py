@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import typing
 from datetime import datetime
 
-import telegram
+import telethon.errors
 from sqlalchemy.orm import Session
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
@@ -46,10 +47,13 @@ def airplane_from_client(client: TelegramClient) -> schemas.AirplaneCreate:
     return airplane
 
 
-def park(db: Session, api: API) -> schemas.AirplaneCreate:
-    with Client(StringSession(), api) as client:
-        client.start()
-        return crud.build_airplane(db, airplane_from_client(client))
+def park(db: Session, api: API) -> typing.Optional[schemas.AirplaneCreate]:
+    try:
+        with Client(StringSession(), api) as client:
+            client.start()
+            return crud.build_airplane(db, airplane_from_client(client))
+    except telethon.errors.rpcerrorlist.BadRequestError:
+        return None
 
 
 def repark(db: Session, api: API) -> None:

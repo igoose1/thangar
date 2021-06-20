@@ -57,7 +57,10 @@ def park(
 
     api = telegram.API(api_id, api_hash)
     airplane = telegram.park(db, api)
-    console.print(f"{airplane.id} was parked!")
+    if airplane:
+        console.print(f"{airplane.id} was parked!")
+    else:
+        console.print("Couldn't park an account.")
 
 
 @app.command()
