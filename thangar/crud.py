@@ -49,3 +49,4 @@ def build_airplane(
 
 def destroy_airplane(db: Session, airplane: schemas.Airplane) -> None:
     db.query(models.Airplane).filter(models.Airplane.id == airplane.id).delete()
+    db.commit()

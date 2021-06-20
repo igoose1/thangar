@@ -84,7 +84,7 @@ def park(
     api_hash: str = typer.Argument(..., envvar="API_HASH"),
 ):
     """
-    Park an account.
+    Add an account in database.
     """
 
     api = telegram.API(api_id, api_hash)
@@ -93,6 +93,17 @@ def park(
         console.print(f"{airplane.id} was parked!")
     else:
         console.print("Couldn't park an account.")
+
+
+@app.command()
+def unpark(id: int):
+    """
+    Remove an account from database.
+    """
+
+    airplane = crud.airplane_by_id(db, id)
+    crud.destroy_airplane(db, airplane)
+    console.print(f"{airplane.id} was unparked!")
 
 
 @app.command()
