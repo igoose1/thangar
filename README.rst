@@ -55,4 +55,4 @@ Use "``hangar --help``" for more information.
 Tip
 ---
 
-Export environment variable in a ``~/.zshenv`` or other shell file!
+Export environment variables in a ``~/.zshenv`` or other shell file!
