@@ -32,14 +32,14 @@ Usage
 
     export API_ID=...  # get from https://my.telegram.org/apps
     export API_HASH=...  # ^^
-    hangar [OPTIONS] COMMAND [ARG]
+    thangar [OPTIONS] COMMAND [ARG]
 
 Example
 -------
 
 ::
 
-	% hangar track
+	% thangar track
 
 							  Accounts
 	┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
@@ -50,7 +50,7 @@ Example
 	│ 1578935718 │ Bobby          │ +1212123421 │ FlamingoSays │
 	└────────────┴────────────────┴─────────────┴──────────────┘
 
-Use "``hangar --help``" for more information.
+Use "``thangar --help``" for more information.
 
 Tip
 ---
