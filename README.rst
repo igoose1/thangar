@@ -1,8 +1,8 @@
 .. image:: https://ipfs.io/ipfs/QmeByEj99cRBRHZnNMGov98DXctf4cUMfX4ywsPD1QYpWY
 
-======
-hangar
-======
+=======
+thangar
+=======
 
 .. image:: https://badge.fury.io/py/thangar.svg
     :target: https://badge.fury.io/py/thangar
