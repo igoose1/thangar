@@ -19,6 +19,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from . import __version__
 from . import crud, models, telegram, schemas
 from .database import SessionLocal, engine
 
@@ -26,6 +27,15 @@ models.Base.metadata.create_all(bind=engine)
 db = SessionLocal()
 console = Console()
 app = typer.Typer(help="Hangar of Telegram accounts.")
+
+
+@app.command()
+def version():
+    """
+    Print version.
+    """
+
+    console.print(__version__)
 
 
 @app.command()
