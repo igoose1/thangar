@@ -1,3 +1,4 @@
 black
 wheel
 twine
+mypy
