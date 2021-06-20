@@ -51,7 +51,7 @@ def export():
 @app.command("import")
 def import_():
     """
-    Import exported data.
+    Erase database and import exported before data.
     """
 
     raw_airplanes = hjson.load(sys.stdin)
@@ -65,6 +65,7 @@ def import_():
         crud.destroy_airplane(db, airplane)
     for airplane in airplanes:
         _ = crud.build_airplane(db, airplane)
+    console.print("Data is imported successfully.")
 
 
 @app.command()
