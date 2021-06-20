@@ -36,28 +36,28 @@ Usage
 
 Use "``thangar --help``" for more information::
 
-	Usage: thangar [OPTIONS] COMMAND [ARGS]...
-
-	  Hangar of Telegram accounts.
-
-	Options:
-	  --install-completion [bash|zsh|fish|powershell|pwsh]
-									  Install completion for the specified shell.
-	  --show-completion [bash|zsh|fish|powershell|pwsh]
-									  Show completion for the specified shell, to
-									  copy it or customize the installation.
-
-	  --help                          Show this message and exit.
-
-	Commands:
-	  export  Export data with secret tokens.
-	  import  Import exported data.
-	  park    Add an account in database.
-	  repark  Update information about parked accounts.
-	  soar    Show last service messages of an account.
-	  track   Show a table with every parked account.
-	  unpark  Remove an account from database.
-
+    Usage: thangar [OPTIONS] COMMAND [ARGS]...
+    
+      Hangar of Telegram accounts.
+    
+    Options:
+      --install-completion [bash|zsh|fish|powershell|pwsh]
+                                      Install completion for the specified shell.
+      --show-completion [bash|zsh|fish|powershell|pwsh]
+                                      Show completion for the specified shell, to
+                                      copy it or customize the installation.
+    
+      --help                          Show this message and exit.
+    
+    Commands:
+      export   Export data with secret tokens.
+      import   Erase database and import exported before data.
+      park     Add an account in database.
+      repark   Update information about parked accounts.
+      soar     Show last service messages of an account.
+      track    Show a table with every parked account.
+      unpark   Remove an account from database.
+      version  Print version.
 
 Example
 -------
@@ -78,6 +78,7 @@ Example
     % thangar export > my_dump.hjson
 
     % thangar import < my_dump.hjson
+    Data is imported successfully.
 
 Tip
 ---
