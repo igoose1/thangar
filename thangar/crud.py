@@ -27,7 +27,9 @@ def airplane_by_id(db: Session, id: int) -> schemas.Airplane:
     return db.query(models.Airplane).filter(models.Airplane.id == id).first()
 
 
-def update_airplane_by_id(db: Session, id: int, airplane: schemas.Airplane):
+def update_airplane_by_id(
+    db: Session, id: int, airplane: schemas.AirplaneCreate
+):
     db.query(models.Airplane).filter(models.Airplane.id == id).update(
         airplane.dict()
     )

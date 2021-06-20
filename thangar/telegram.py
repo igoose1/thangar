@@ -47,7 +47,7 @@ def airplane_from_client(client: TelegramClient) -> schemas.AirplaneCreate:
     return airplane
 
 
-def park(db: Session, api: API) -> typing.Optional[schemas.AirplaneCreate]:
+def park(db: Session, api: API) -> typing.Optional[schemas.Airplane]:
     try:
         with Client(StringSession(), api) as client:
             client.start()
