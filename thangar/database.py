@@ -18,7 +18,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-path = Path.home() / ".local" / "share" / "hangar"
+path = Path.home() / ".local" / "share" / "thangar"
 path.mkdir(parents=True, exist_ok=True)
 SQLALCHEMY_DATABASE_URL = "sqlite:///" + str(path / "db.sqlite3")
 
